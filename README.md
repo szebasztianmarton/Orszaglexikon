@@ -2,8 +2,6 @@
 
 A vintage-cartographic country encyclopedia. The world's countries in one volume — with flag, population, an interactive map, and a side-by-side comparison view.
 
-> _Hungarian university software project · 6th semester_
-
 ## Stack
 
 - React 19 + TypeScript 6 + Vite 8
