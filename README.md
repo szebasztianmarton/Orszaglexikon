@@ -2,7 +2,7 @@
 
 A vintage-cartographic country encyclopedia. The world's countries in one volume — with flag, population, an interactive map, and a side-by-side comparison view.
 
-**Élő demo:** [orszaglexikon.netlify.app](https://orszaglexikon.netlify.app/)
+**Demo:** [orszaglexikon.netlify.app](https://orszaglexikon.netlify.app/)
 
 # Stack
 
