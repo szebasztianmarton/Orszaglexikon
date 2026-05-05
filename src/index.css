@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+/* Self-hosted variable fonts */
+@import "@fontsource-variable/fraunces/index.css";
+@import "@fontsource-variable/inter-tight/index.css";
+@import "@fontsource-variable/jetbrains-mono/index.css";
+
+/* Leaflet base styles */
+@import "leaflet/dist/leaflet.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Atlas Sectoria — Parchment Edition (light) ───────────────────── */
+@theme {
+  --color-paper:      #F4EDE0;
+  --color-paper-deep: #ECE0CC;
+  --color-paper-dim:  #E1D2B5;
+  --color-ink:        #1A2434;
+  --color-ink-soft:   #3E4759;
+  --color-ink-faint:  #6F7585;
+  --color-ochre:      #C49B4F;
+  --color-ochre-deep: #9C7836;
+  --color-oxblood:    #8B2A2C;
+  --color-oxblood-deep: #6B1F21;
+  --color-atlas:      #2B4A6A;
+  --color-atlas-deep: #1B3149;
+  --color-moss:       #5C6B43;
+
+  --font-display: "Fraunces Variable", "Fraunces", Georgia, serif;
+  --font-sans:    "Inter Tight Variable", "Inter Tight", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-atlas: 2px;
+}
+
+/* ─── Observatory Edition (dark) — override CSS vars only ──────────── */
+.dark {
+  --color-paper:      #0F1620;
+  --color-paper-deep: #182333;
+  --color-paper-dim:  #223046;
+  --color-ink:        #E8DECB;
+  --color-ink-soft:   #A0A8B5;
+  --color-ink-faint:  #6F7585;
+  --color-ochre:      #D4AC5E;
+  --color-ochre-deep: #B58F44;
+  --color-oxblood:    #C44649;
+  --color-oxblood-deep: #9E3536;
+  --color-atlas:      #4A7AAB;
+  --color-atlas-deep: #345780;
+  --color-moss:       #8C9F70;
+}
+
+/* ─── Base layer ───────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  .dark {
+    color-scheme: dark;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Selection */
+  ::selection {
+    background: var(--color-oxblood);
+    color: var(--color-paper);
+  }
+
+  /* Subtle grain layered behind everything */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("/paper-grain.svg");
+    background-size: 320px 320px;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .dark body::before {
+    opacity: 0.08;
+    mix-blend-mode: screen;
+  }
+
+  /* Headings default to display serif */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-feature-settings: "ss01", "ss02";
+    letter-spacing: -0.01em;
+  }
+
+  /* Numerals use the mono — utility provided too via .num */
+  .num, [data-numeral] {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "ss01", "zero";
+  }
+
+  /* Hairline rule */
+  hr {
+    border: 0;
+    border-top: 1px solid color-mix(in oklab, var(--color-ink) 25%, transparent);
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-oxblood);
+    outline-offset: 2px;
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--color-ink) 25%, transparent);
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklab, var(--color-ink) 45%, transparent);
+  }
+}
+
+/* ─── Component-level utilities ────────────────────────────────────── */
+@layer components {
+  .small-caps {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-feature-settings: "smcp", "c2sc";
+  }
+
+  .dotted-leader {
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1.2px);
+    background-size: 6px 4px;
+    background-position: bottom;
+    background-repeat: repeat-x;
+  }
+
+  /* Drop cap for editorial paragraphs */
+  .drop-cap::first-letter {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 4.4em;
+    float: left;
+    line-height: 0.85;
+    padding: 0.08em 0.12em 0 0;
+    color: var(--color-oxblood);
+    font-feature-settings: "ss01";
+  }
+
+  /* Latitude tick rule */
+  .latitude-rule {
+    --tick: color-mix(in oklab, var(--color-ink) 35%, transparent);
+    height: 1px;
+    background-image:
+      linear-gradient(to right, transparent 0, transparent 50%, var(--tick) 50%, var(--tick) 100%);
+    background-size: 16px 1px;
+  }
+
+  /* Plate label */
+  .plate {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--color-ink) 65%, transparent);
+  }
+
+  .plate::before {
+    content: "◇  ";
+    color: var(--color-ochre);
+  }
+}
+
+/* ─── Leaflet overrides — vintage atlas tile feel ──────────────────── */
+.leaflet-container {
+  background: var(--color-paper-deep);
+  font-family: var(--font-sans);
+}
+.leaflet-tile-pane {
+  filter: sepia(0.55) saturate(0.65) hue-rotate(-10deg) contrast(0.92) brightness(1.04);
+}
+.dark .leaflet-tile-pane {
+  filter: invert(0.92) hue-rotate(180deg) sepia(0.25) saturate(0.6) brightness(0.85);
+}
+.leaflet-control-zoom a {
+  background: var(--color-paper) !important;
+  color: var(--color-ink) !important;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 35%, transparent) !important;
+  font-family: var(--font-display) !important;
+}
+.leaflet-control-attribution {
+  background: color-mix(in oklab, var(--color-paper) 90%, transparent) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 10px !important;
+  color: var(--color-ink-soft) !important;
+}
+.leaflet-control-attribution a {
+  color: var(--color-oxblood) !important;
+}
+
+/* ─── Motion / animations ──────────────────────────────────────────── */
+@keyframes fadeRise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes inkBleed {
+  from { opacity: 0; filter: blur(6px); }
+  to   { opacity: 1; filter: blur(0); }
+}
+
+.fade-rise { animation: fadeRise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.ink-bleed { animation: inkBleed 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+/* ─── World outline (decorative living-map background) ───────────── */
+
+/* Atmospheric drift — a slow east-west breath, like the planet rotating */
+@keyframes worldDrift {
+  0%, 100% { transform: translateX(-1.2%) translateY(-0.4%); }
+  50%      { transform: translateX(1.2%)  translateY(0.4%); }
+}
+
+/* Country reveal — each path draws itself in via stroke-dashoffset */
+@keyframes worldDraw {
+  0%   { stroke-dashoffset: 1; opacity: 0; }
+  20%  { opacity: 0.36; }
+  100% { stroke-dashoffset: 0; opacity: 0.36; }
+}
+
+.world-outline-wrap {
+  /* Edge fade so the map dissolves into the page */
+  -webkit-mask-image:
+    radial-gradient(ellipse 75% 70% at center, black 30%, transparent 78%);
+          mask-image:
+    radial-gradient(ellipse 75% 70% at center, black 30%, transparent 78%);
+}
+
+.world-outline-drift {
+  animation: worldDrift 90s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.world-outline-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  animation: worldDraw 2.4s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: var(--draw-delay, 0s);
+}
+
+.world-outline-static {
+  opacity: 0.36;
+}
+
+/* Honour user preference — no motion if requested */
+@media (prefers-reduced-motion: reduce) {
+  .world-outline-drift { animation: none; }
+  .world-outline-path {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 0.36;
+  }
+}
