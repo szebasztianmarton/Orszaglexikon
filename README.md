@@ -23,10 +23,6 @@ A vintage-cartographic country encyclopedia. The world's countries in one volume
 - **Bilingual UI** — Hungarian + English toggle, locale-aware number formatting, localized country names
 - **Light + dark theme** — _Parchment Edition_ and _Observatory Edition_
 
-## Aesthetic — "Atlas Sectoria"
-
-Modern editorial atlas. Cream parchment, ink navy, oxblood + ochre accents. Hairline rules and small-caps "PLATE I, II, III…" labels. Compass rose in the header. Latitude tick decorations between sections.
-
 ## Scripts
 
 ```bash
