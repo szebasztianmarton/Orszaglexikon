@@ -6,14 +6,17 @@ A vintage-cartographic country encyclopedia. The world's countries in one volume
 
 # Stack
 
-- React 19 + TypeScript 6 + Vite 8
-- Tailwind CSS 4 (CSS-first `@theme`)
-- React Router 7
-- Zustand 5 with `persist` (theme · locale · compare list)
-- TanStack Query v5 (REST Countries v3.1)
-- Leaflet 1.9 + react-leaflet 5 (OpenStreetMap tiles + GeoJSON country highlight)
-- Motion v12 (page transitions, stagger reveals)
-- Self-hosted variable fonts: Fraunces · Inter Tight · JetBrains Mono
+![React 19](https://img.shields.io/badge/React_19-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TypeScript 6](https://img.shields.io/badge/TypeScript_6-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite 8](https://img.shields.io/badge/Vite_8-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS_4-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![React Router 7](https://img.shields.io/badge/React_Router_7-%23CA4245.svg?style=for-the-badge&logo=react-router&logoColor=white)
+![Zustand 5](https://img.shields.io/badge/Zustand_5_(Persist)-%23413D3D.svg?style=for-the-badge)
+![TanStack Query v5](https://img.shields.io/badge/TanStack_Query_v5-%23FF4154.svg?style=for-the-badge&logo=react-query&logoColor=white)
+![Leaflet 1.9 + React Leaflet 5](https://img.shields.io/badge/Leaflet_1.9_%2B_React_Leaflet_5-%23199900.svg?style=for-the-badge&logo=leaflet&logoColor=white)
+![Motion v12](https://img.shields.io/badge/Motion_v12-%230055FF.svg?style=for-the-badge&logo=framer&logoColor=white)
+![REST Countries v3.1](https://img.shields.io/badge/REST_Countries_v3.1-%23000000.svg?style=for-the-badge&logo=json&logoColor=white)
+![Variable Fonts](https://img.shields.io/badge/Fonts-Fraunces_|_Inter_Tight_|_JetBrains_Mono-%234A90E2.svg?style=for-the-badge)
 
 ## Features
 
